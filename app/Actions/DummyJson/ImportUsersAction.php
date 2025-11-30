@@ -32,7 +32,7 @@ class ImportUsersAction
                 'image' => $u['image'],
                 'birth_date' => $u['birthDate'],
                 'address' => json_encode($u['address']),
-                'password' => config('app.default_password'),
+                'password' => bcrypt(config('app.default_password')),
             ])->toArray();
 
             $this->bulkImporter->upsert(
