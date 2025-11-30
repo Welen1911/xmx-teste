@@ -18,6 +18,7 @@ class PostFactory extends Factory
     public function definition(): array
     {
         return [
+            'external_id' => fake()->randomNumber(),
             'title' => $this->faker->sentence(),
             'body' => $this->faker->paragraphs(3, true),
             'likes' => $this->faker->numberBetween(0, 500),

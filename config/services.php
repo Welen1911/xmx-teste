@@ -35,4 +35,12 @@ return [
         ],
     ],
 
+    'dummyjson' => [
+        'base_url' => env('DUMMYJSON_BASE_URL', 'https://dummyjson.com'),
+        'users_endpoint' => env('DUMMYJSON_USERS_ENDPOINT', '/users'),
+        'posts_endpoint' => env('DUMMYJSON_POSTS_ENDPOINT', '/posts'),
+        'comments_endpoint' => env('DUMMYJSON_COMMENTS_ENDPOINT', '/comments'),
+        'limit' => env('DUMMYJSON_LIMIT', 0),
+    ],
+
 ];

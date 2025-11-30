@@ -19,6 +19,7 @@ class CommentFactory extends Factory
     public function definition(): array
     {
         return [
+            'external_id' => fake()->id(),
             'body' => $this->faker->paragraph(),
             'post_id' => Post::factory(),
             'user_id' => User::factory(),
