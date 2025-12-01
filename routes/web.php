@@ -11,6 +11,7 @@ Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show')
 
 Route::prefix('user')->group(function () {
     Route::get('/{user}', [UserController::class, 'show'])->name('user.show');
+    Route::get('/{user}/posts', [UserController::class, 'posts'])->name('user.posts');
 });
 
 Route::get('dashboard', function () {

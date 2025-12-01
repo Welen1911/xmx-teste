@@ -17,4 +17,16 @@ class UserController extends Controller
             'user' => $user,
         ]);
     }
+
+    public function posts(User $user): Response
+    {
+        $posts = $user->posts()->withCount('comments')->latest()->paginate(10);
+
+        return Inertia::render('Welcome', [
+            'user' => $user,
+            'posts' => $posts,
+        ]);
+    }
 }
+
+
