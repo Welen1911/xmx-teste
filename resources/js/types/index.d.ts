@@ -40,4 +40,16 @@ export interface User {
     updated_at: string;
 }
 
+export interface Post {
+    id: number
+  title: string
+  body?: string
+  image?: string
+  likes: number
+  dislikes: number
+  views: number
+  comments_count: number
+  tags: { id: number; name: string }[]
+}
+
 export type BreadcrumbItemType = BreadcrumbItem;
