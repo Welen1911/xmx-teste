@@ -17,4 +17,11 @@ class PostController extends Controller
 
         return Inertia::render('Welcome', ['posts' => $posts]);
     }
+
+    public function show(Post $post): Response
+    {
+        $post->load('tags', 'comments.user', 'user');
+
+        return Inertia::render('posts/Show', ['post' => $post]);
+    }
 }

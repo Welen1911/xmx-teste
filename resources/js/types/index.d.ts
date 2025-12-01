@@ -42,14 +42,18 @@ export interface User {
 
 export interface Post {
     id: number
-  title: string
-  body?: string
-  image?: string
-  likes: number
-  dislikes: number
-  views: number
-  comments_count: number
-  tags: { id: number; name: string }[]
-}
+    title: string
+    body: string
+    tags: { id: number; name: string }[]
+    likes: number
+    dislikes: number
+    views: number
+    comments: {
+      id: number
+      content: string
+      user: { name: string }
+    }[]
+    user: User
+  }
 
 export type BreadcrumbItemType = BreadcrumbItem;
