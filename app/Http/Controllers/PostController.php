@@ -3,20 +3,40 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\Tag;
+use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
 
 class PostController extends Controller
 {
-    public function index(): Response
+    public function index(Request $request)
     {
-        $posts = Post::select('id', 'title', 'likes', 'dislikes')
-        ->withCount('comments')
-        ->with('tags')
-        ->paginate(30);
+        $query = Post::query()->withCount('comments')->with('tags');
 
-        return Inertia::render('Welcome', ['posts' => $posts]);
+        if ($request->filled('search')) {
+            $query->where('title', 'LIKE', "%{$request->search}%");
+        }
+
+        if ($request->filled('tag')) {
+            $query->whereHas('tags', fn($q) => $q->where('name', $request->tag));
+        }
+
+        if ($request->likes === 'asc') {
+            $query->orderBy('likes', 'asc');
+        }
+
+        if ($request->likes === 'desc') {
+            $query->orderBy('likes', 'desc');
+        }
+
+        return Inertia::render('Welcome', [
+            'posts'   => $query->paginate(30),
+            'filters' => $request->only('search', 'tag', 'likes'),
+            'tags'    => Tag::pluck('name'),
+        ]);
     }
+
 
     public function show(Post $post): Response
     {

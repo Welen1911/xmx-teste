@@ -14,8 +14,6 @@ Route::prefix('user')->group(function () {
     Route::get('/{user}/posts', [UserController::class, 'posts'])->name('user.posts');
 });
 
-Route::get('dashboard', function () {
-    return Inertia::render('Welcome');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::redirect('dashboard', '/')->name('dashboard'); 
 
 require __DIR__.'/settings.php';

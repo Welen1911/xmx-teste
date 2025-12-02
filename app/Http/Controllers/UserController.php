@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -18,15 +19,33 @@ class UserController extends Controller
         ]);
     }
 
-    public function posts(User $user): Response
+    public function posts(User $user, Request $request)
     {
-        $posts = $user->posts()->withCount('comments')->latest()->paginate(10);
+        $query = $user->posts()
+            ->withCount('comments')
+            ->with('tags');
+
+        if ($request->filled('search')) {
+            $query->where('title', 'LIKE', "%{$request->search}%");
+        }
+
+        if ($request->filled('tag')) {
+            $query->whereHas('tags', fn($q) => $q->where('name', $request->tag));
+        }
+
+        if ($request->likes === 'asc') {
+            $query->orderBy('likes', 'asc');
+        }
+
+        if ($request->likes === 'desc') {
+            $query->orderBy('likes', 'desc');
+        }
 
         return Inertia::render('Welcome', [
-            'user' => $user,
-            'posts' => $posts,
+            'posts'   => $query->paginate(9)->withQueryString(),
+            'filters' => $request->only('search', 'tag', 'likes'),
+            'tags'    => Tag::pluck('name'),
+            'user'    => $user,
         ]);
     }
 }
-
-

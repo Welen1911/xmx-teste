@@ -41,6 +41,75 @@ class PostControllerTest extends TestCase
     }
 
     /** @test */
+    public function it_filters_posts_by_title_search_even_with_inertia_params()
+    {
+        $matching = Post::factory()->create(['title' => 'Aprendendo Laravel']);
+        $notMatching = Post::factory()->create(['title' => 'Outro título']);
+
+        $response = $this->get('/?search=Laravel&__rememberable=true&hasErrors=false&isDirty=true');
+
+        $response->assertInertia(
+            fn($page) => $page
+                ->component('Welcome')
+                ->has('posts.data', 1)
+                ->where('posts.data.0.id', $matching->id)
+        );
+    }
+
+    /** @test */
+    public function it_filters_posts_by_tag_even_with_inertia_params()
+    {
+        $tagLaravel = Tag::factory()->create(['name' => 'Laravel']);
+        $tagVue = Tag::factory()->create(['name' => 'Vue']);
+
+        $postLaravel = Post::factory()->hasAttached($tagLaravel)->create();
+        $postVue = Post::factory()->hasAttached($tagVue)->create();
+
+        $response = $this->get('/?tag=Laravel&processing=false&wasSuccessful=false');
+
+        $response->assertInertia(
+            fn($page) => $page
+                ->component('Welcome')
+                ->has('posts.data', 1)
+                ->where('posts.data.0.id', $postLaravel->id)
+        );
+    }
+
+    /** @test */
+    public function it_sorts_posts_by_likes_descending_even_with_inertia_params()
+    {
+        $low = Post::factory()->create(['likes' => 10]);
+        $high = Post::factory()->create(['likes' => 50]);
+
+        $response = $this->get('/?likes=desc&recentlySuccessful=false');
+
+        $response->assertInertia(
+            fn($page) => $page
+                ->component('Welcome')
+                ->has('posts.data', 2)
+                ->where('posts.data.0.id', $high->id)
+                ->where('posts.data.1.id', $low->id)
+        );
+    }
+
+    /** @test */
+    public function it_sorts_posts_by_likes_descending()
+    {
+        $low = Post::factory()->create(['likes' => 10]);
+        $high = Post::factory()->create(['likes' => 50]);
+
+        $response = $this->get('/?likes=desc');
+
+        $response->assertInertia(
+            fn($page) =>
+            $page
+                ->component('Welcome')
+                ->where('posts.data.0.id', $high->id)
+                ->where('posts.data.1.id', $low->id)
+        );
+    }
+
+    /** @test */
     public function it_renders_the_posts_show_page()
     {
         $post = Post::factory()
