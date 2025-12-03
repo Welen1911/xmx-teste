@@ -54,6 +54,13 @@ export interface Post {
       user: { name: string }
     }[]
     user: User
-  }
+}
+
+export interface Comment {
+    id: number;
+    body: string;
+    likes: number;
+    user: User;
+}
 
 export type BreadcrumbItemType = BreadcrumbItem;

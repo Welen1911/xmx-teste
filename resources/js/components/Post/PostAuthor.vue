@@ -1,10 +1,8 @@
 <script setup lang="ts">
+import { User } from '@/types';
+
 const props = defineProps<{
-  user: {
-    first_name: string;
-    last_name: string;
-    image?: string | null;
-  };
+  user: User;
 }>();
 </script>
 

@@ -23,6 +23,8 @@ class ImportUsersAction
                 return;
             }
 
+            $defaultHash = bcrypt(config('app.default_password'));
+
             $payload = collect($users)->map(fn($u) => [
                 'external_id' => $u['id'],
                 'first_name' => $u['firstName'],
@@ -32,7 +34,7 @@ class ImportUsersAction
                 'image' => $u['image'],
                 'birth_date' => $u['birthDate'],
                 'address' => json_encode($u['address']),
-                'password' => bcrypt(config('app.default_password')),
+                'password' => $defaultHash,
             ])->toArray();
 
             $this->bulkImporter->upsert(

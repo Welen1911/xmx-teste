@@ -39,7 +39,7 @@ function updateFilters() {
     <select
       v-model="form.tag"
       @change="updateFilters"
-      class="w-full rounded-lg border px-3 py-2"
+      class="w-full rounded-lg border px-3 py-2 dark:bg-gray-800"
     >
       <option value="">Todas as tags</option>
       <option v-for="tag in props.tags" :key="tag" :value="tag">
@@ -51,7 +51,7 @@ function updateFilters() {
     <select
       v-model="form.likes"
       @change="updateFilters"
-      class="w-full rounded-lg border px-3 py-2"
+      class="w-full rounded-lg border px-3 py-2 dark:bg-gray-800"
     >
       <option value="">Ordenar por Likes</option>
       <option value="asc">Menos → Mais curtidos</option>

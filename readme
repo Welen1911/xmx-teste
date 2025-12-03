@@ -1,0 +1,35 @@
+# XMX Blog teste
+
+## Descrição
+
+O projeto foi criado para demonstrar a construção de um blog com integração à DummyJSON, persistência local e interface web moderna.
+
+## Tecnologias Utilizadas
+
+- Laravel 12.x
+- PHPUnit
+- Inertiajs 2
+- Vuejs 3.x
+- Vue Laravel Starter Kit
+- Shadcn-Vue
+
+## Instalação
+
+### Pré-requisitos
+
+- PHP 8.2+
+- Node 22.19
+- NPM 10.9.x
+- Mysql
+
+### Passos
+
+1. Clone o repositório
+2. Instale as dependências PHP: `composer install`
+3. Instale as dependências do Node: `npm install`
+4. Configure o banco de dados
+5. Execute as migrations: `php artisan migrate`
+6. Rode o comando que consome a Api do DummyJSON: `php artisan dummyjson:import`
+7. Faça build dos componentes Vuejs: `npm run buid`
+8. Por fim, rode o servidor: `php artisan serve`
+9. Para rodar os testes: `php artisan test`

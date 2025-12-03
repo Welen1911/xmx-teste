@@ -1,16 +1,10 @@
 <script setup lang="ts">
-import { ThumbsUp } from 'lucide-vue-next';
-import Button from '../ui/button/Button.vue';
+import { ThumbsUp } from "lucide-vue-next";
+import Button from "../ui/button/Button.vue";
+import { Comment } from "@/types";
 
 const props = defineProps<{
-  comments: {
-    id: number;
-    body: string;
-    likes: number;
-    user: {
-      first_name: string;
-    };
-  }[];
+  comments: Comment[];
 }>();
 </script>
 
