@@ -34,7 +34,6 @@ const currentPageLabel = computed(() => {
 <template>
   <nav aria-label="Pagination" class="w-full">
     <div class="flex items-center justify-center gap-3 py-4">
-
       <!-- Previous -->
       <div>
         <template v-if="prevUrl">
@@ -47,7 +46,9 @@ const currentPageLabel = computed(() => {
           </Link>
         </template>
         <template v-else>
-          <span class="inline-flex items-center px-3 py-1 rounded-md border opacity-40 cursor-not-allowed">
+          <span
+            class="inline-flex items-center px-3 py-1 rounded-md border opacity-40 cursor-not-allowed"
+          >
             ‹
           </span>
         </template>
@@ -68,9 +69,12 @@ const currentPageLabel = computed(() => {
               :href="link.url"
               preserve-scroll
               class="px-3 py-1 rounded-md border"
-              :class="link.active ? 'bg-primary text-primary-foreground' : 'hover:bg-muted'"
-              v-html="link.label"
-            />
+              :class="
+                link.active ? 'bg-primary text-primary-foreground' : 'hover:bg-muted'
+              "
+            >
+              <span v-html="link.label"></span>
+            </Link>
           </template>
 
           <template v-else>
@@ -92,12 +96,13 @@ const currentPageLabel = computed(() => {
           </Link>
         </template>
         <template v-else>
-          <span class="inline-flex items-center px-3 py-1 rounded-md border opacity-40 cursor-not-allowed">
+          <span
+            class="inline-flex items-center px-3 py-1 rounded-md border opacity-40 cursor-not-allowed"
+          >
             ›
           </span>
         </template>
       </div>
-
     </div>
   </nav>
 </template>

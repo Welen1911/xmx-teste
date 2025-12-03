@@ -12,12 +12,12 @@ const props = defineProps<{
   <div class="flex items-center gap-4 mt-4">
     <Button variant="outline" class="flex items-center gap-2">
       <ThumbsUp class="h-4 w-4" />
-      {{ likes }}
+      {{ props.likes }}
     </Button>
 
     <Button variant="outline" class="flex items-center gap-2">
       <ThumbsDown class="h-4 w-4" />
-      {{ dislikes }}
+      {{ props.dislikes }}
     </Button>
   </div>
 </template>

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import AppLayout from '@/layouts/AppLayout.vue'
 import { Head } from '@inertiajs/vue3'
-import type { BreadcrumbItem, Post, User } from '@/types'
+import type { BreadcrumbItem, Post } from '@/types'
 
 import PostHeader from '@/components/Post/PostHeader.vue'
 import PostBody from '@/components/Post/PostBody.vue'

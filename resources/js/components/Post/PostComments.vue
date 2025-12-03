@@ -12,11 +12,11 @@ const props = defineProps<{
   <div
     class="rounded-xl border border-sidebar-border/70 dark:border-sidebar-border p-6 mt-6"
   >
-    <h2 class="text-xl font-semibold mb-4">Comentários ({{ comments.length }})</h2>
+    <h2 class="text-xl font-semibold mb-4">Comentários ({{ props.comments.length }})</h2>
 
     <div class="space-y-4">
       <div
-        v-for="comment in comments"
+        v-for="comment in props.comments"
         :key="comment.id"
         class="rounded-lg border p-4 border-muted"
       >

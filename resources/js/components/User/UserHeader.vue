@@ -1,11 +1,8 @@
 <script setup lang="ts">
+import { User } from '@/types';
+
 const props = defineProps<{
-  user: {
-    first_name: string
-    last_name: string
-    email: string
-    image: string | null
-  }
+  user: User;
 }>()
 </script>
 
@@ -14,8 +11,8 @@ const props = defineProps<{
 
     <div class="h-20 w-20 rounded-full overflow-hidden border bg-muted">
       <img
-        v-if="user.image"
-        :src="user.image"
+        v-if="props.user.image"
+        :src="props.user.image"
         class="h-full w-full object-cover"
       />
 
@@ -23,15 +20,15 @@ const props = defineProps<{
         v-else
         class="h-full w-full flex items-center justify-center text-xl text-muted-foreground"
       >
-        {{ user.first_name[0] }}{{ user.last_name[0] }}
+        {{ props.user.first_name[0] }}{{ props.user.last_name[0] }}
       </div>
     </div>
 
     <div>
       <p class="text-2xl font-semibold">
-        {{ user.first_name }} {{ user.last_name }}
+        {{ props.user.first_name }} {{ props.user.last_name }}
       </p>
-      <p class="text-sm text-muted-foreground">{{ user.email }}</p>
+      <p class="text-sm text-muted-foreground">{{ props.user.email }}</p>
     </div>
 
   </div>

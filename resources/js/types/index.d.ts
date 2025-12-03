@@ -34,7 +34,9 @@ export interface User {
     image?: string;
     phone?: string;
     birth_date?: string;
-    address?: Object;
+    address?: object;
+    posts_count?: number;
+    comments_count?: number;
     email_verified_at: string | null;
     created_at: string;
     updated_at: string;
@@ -51,9 +53,10 @@ export interface Post {
     comments: {
       id: number
       content: string
-      user: { name: string }
+      user: User;
     }[]
-    user: User
+    user: User;
+    comments_count?: number;
 }
 
 export interface Comment {

@@ -14,14 +14,14 @@ const props = defineProps<{ post: Post }>();
   >
     <CardHeader>
       <CardTitle class="text-lg font-semibold">
-        <Link :href="`/posts/${post.id}`" class="hover:underline">
-          {{ post.title }}
+        <Link :href="`/posts/${props.post.id}`" class="hover:underline">
+          {{ props.post.title }}
         </Link>
       </CardTitle>
 
       <!-- Tags -->
-      <div v-if="post.tags && post.tags.length" class="flex flex-wrap gap-2 mt-2">
-        <Badge v-for="tag in post.tags" :key="tag.id">
+      <div v-if="props.post.tags && props.post.tags.length" class="flex flex-wrap gap-2 mt-2">
+        <Badge v-for="tag in props.post.tags" :key="tag.id">
           {{ tag.name }}
         </Badge>
       </div>
@@ -31,17 +31,17 @@ const props = defineProps<{ post: Post }>();
       <div class="flex items-center gap-4">
         <button class="flex items-center gap-1 text-sm hover:text-primary">
           <ThumbsUp class="w-4 h-4" />
-          {{ post.likes ?? 0 }}
+          {{ props.post.likes ?? 0 }}
         </button>
 
         <button class="flex items-center gap-1 text-sm hover:text-primary">
           <ThumbsDown class="w-4 h-4" />
-          {{ post.dislikes ?? 0 }}
+          {{ props.post.dislikes ?? 0 }}
         </button>
 
         <button class="flex items-center gap-1 text-sm hover:text-primary">
           <MessageCircle class="w-4 h-4" />
-          {{ post.comments_count ?? 0 }}
+          {{ props.post.comments_count ?? 0 }}
         </button>
       </div>
     </CardContent>
