@@ -86,15 +86,18 @@ php artisan dummyjson:import
 
 ### Passos
 
-1. Clone o repositório
-2. Instale as dependências PHP: `composer install`
-3. Instale as dependências do Node: `npm install`
-4. Configure o banco de dados
-5. Execute as migrations: `php artisan migrate`
-6. Rode o comando que consome a Api do DummyJSON: `php artisan dummyjson:import`
-7. Faça build dos componentes Vuejs: `npm run buid`
-8. Por fim, rode o servidor: `php artisan serve`
-9. Para rodar os testes: `php artisan test`
+1. Clone o repositório 
+2. Instale as dependências PHP: `composer install` 
+3. Instale as dependências do Node: `npm install` 
+4. Crie o .env usando o .env.example como base 
+5. Crie a chave do app: `php artisan key:generate` 
+6. (Opcional) No .env, sete senha padrão dos usuários para realizar login: `DEFAULT_PASSWORD=password` 
+7. Configure o banco de dados 
+8. Execute as migrations: `php artisan migrate` 
+9. Rode o comando que consome a Api do DummyJSON: `php artisan dummyjson:import` 
+10. Faça build dos componentes Vuejs: `npm run buid` 
+11. Por fim, rode o servidor: `php artisan serve` 
+12. (Opcional)Para rodar os testes: `php artisan test`
 
 ---
 
