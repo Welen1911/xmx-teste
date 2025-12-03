@@ -12,15 +12,12 @@ class PostPivotSyncHelper
             $postId = $postMap[$post['id']] ?? null;
             if (!$postId) continue;
 
-            // Mapeia nomes das tags para IDs reais
             $tagIds = array_map(fn($tag) => $tagMap[$tag], $post['tags']);
 
-            // Sync correto com pivot (removendo os que não estão no array)
             DB::table('post_tag')
                 ->where('post_id', $postId)
                 ->delete();
 
-            // Insere somente os atuais
             $payload = [];
 
             foreach ($tagIds as $tagId) {
